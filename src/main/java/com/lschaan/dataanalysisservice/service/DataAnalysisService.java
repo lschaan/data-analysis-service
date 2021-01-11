@@ -131,16 +131,4 @@ public class DataAnalysisService {
 
         return item;
     }
-
-    public boolean isSale(DataInput input) {
-        return input instanceof SaleInput;
-    }
-
-    public boolean isCustomer(DataInput input) {
-        return input instanceof CustomerInput;
-    }
-
-    public boolean isSalesman(DataInput input) {
-        return input instanceof SalesmanInput;
-    }
 }

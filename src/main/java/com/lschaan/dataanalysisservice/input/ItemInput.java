@@ -6,6 +6,15 @@ public class ItemInput {
     private Long quantity;
     private Double price;
 
+    public ItemInput() {
+    }
+
+    public ItemInput(String id, Long quantity, Double price) {
+        this.id = id;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
     public Double getItemValue() {
         return this.price * this.quantity;
     }

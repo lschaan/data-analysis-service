@@ -1,5 +1,6 @@
 package com.lschaan.dataanalysisservice.service;
 
+import com.lschaan.dataanalysisservice.input.CustomerInput;
 import com.lschaan.dataanalysisservice.input.DataInput;
 import com.lschaan.dataanalysisservice.input.SaleInput;
 import com.lschaan.dataanalysisservice.input.SalesmanInput;
@@ -14,12 +15,6 @@ import static com.lschaan.dataanalysisservice.helper.Constants.OUTPUT_FILE_SUFFI
 
 @Service
 public class ReportGeneratorService {
-
-    private final DataAnalysisService dataAnalysisService;
-
-    public ReportGeneratorService(DataAnalysisService dataAnalysisService) {
-        this.dataAnalysisService = dataAnalysisService;
-    }
 
     public FileReportOutput generateReportFromData(List<DataInput> data) {
         FileReportOutput report = new FileReportOutput();
@@ -41,13 +36,13 @@ public class ReportGeneratorService {
 
     private Long countCustomers(List<DataInput> data) {
         return data.stream()
-                .filter(dataAnalysisService::isCustomer)
+                .filter(this::isCustomer)
                 .count();
     }
 
     private Long countSalesmen(List<DataInput> data) {
         return data.stream()
-                .filter(dataAnalysisService::isSalesman)
+                .filter(this::isSalesman)
                 .count();
     }
 
@@ -68,7 +63,7 @@ public class ReportGeneratorService {
 
     private List<SaleInput> getSales(List<DataInput> data) {
         return data.stream()
-                .filter(dataAnalysisService::isSale)
+                .filter(this::isSale)
                 .map(dataInput -> (SaleInput) dataInput)
                 .collect(Collectors.toList());
     }
@@ -94,7 +89,7 @@ public class ReportGeneratorService {
 
     private List<SalesmanInput> getSalesmen(List<DataInput> data) {
         return data.stream()
-                .filter(dataAnalysisService::isSalesman)
+                .filter(this::isSalesman)
                 .map(dataInput -> (SalesmanInput) dataInput)
                 .collect(Collectors.toList());
     }
@@ -120,5 +115,17 @@ public class ReportGeneratorService {
 
     public String getOutputFilename(FileReportOutput report) {
         return report.getOriginalFilename().replace(INPUT_FILE_SUFFIX, OUTPUT_FILE_SUFFIX);
+    }
+
+    private boolean isSale(DataInput input) {
+        return input instanceof SaleInput;
+    }
+
+    private boolean isCustomer(DataInput input) {
+        return input instanceof CustomerInput;
+    }
+
+    private boolean isSalesman(DataInput input) {
+        return input instanceof SalesmanInput;
     }
 }

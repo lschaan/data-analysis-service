@@ -54,6 +54,7 @@ public class DirectoryMonitorService implements FileChangeListener {
     public void onChange(Set<ChangedFiles> changeSet) {
         changeSet.stream()
                 .flatMap(changedFile -> changedFile.getFiles().stream())
+                .filter(changedFile -> !(changedFile.getType() == ChangedFile.Type.DELETE))
                 .map(ChangedFile::getFile)
                 .forEach(this::processFile);
     }

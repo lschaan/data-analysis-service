@@ -1,7 +1,5 @@
 package com.lschaan.dataanalysisservice.exception;
 
-import java.util.Objects;
-
 public class InvalidFileException extends RuntimeException {
 
     private final String message;
@@ -16,16 +14,14 @@ public class InvalidFileException extends RuntimeException {
         this.cause = cause;
     }
 
+    @Override
     public String getMessage() {
         return this.message;
     }
 
+    @Override
     public Throwable getCause() {
         return this.cause;
     }
 
-    @Override
-    public String toString() {
-        return Objects.toString(this);
-    }
 }
