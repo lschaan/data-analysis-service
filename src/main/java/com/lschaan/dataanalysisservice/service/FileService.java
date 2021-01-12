@@ -4,6 +4,7 @@ import com.lschaan.dataanalysisservice.helper.FileHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -56,6 +57,7 @@ public class FileService {
         } catch (IOException ioe) {
             throw new UncheckedIOException("Erro na escrita do arquivo {} " + filename, ioe);
         }
+        logger.info("Arquivo {} escrito com sucesso.", outputFilename);
     }
 
     private File createOutputDirectory() {

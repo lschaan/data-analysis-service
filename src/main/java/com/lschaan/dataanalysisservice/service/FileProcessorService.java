@@ -5,6 +5,7 @@ import com.lschaan.dataanalysisservice.output.FileReportOutput;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
 import java.io.File;
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class FileProcessorService {
         logger.info("Iniciando processamento para o arquivo {}", file.getName());
         FileReportOutput report = getReportInformationFromFile(file);
         writeOutputFileFromReport(report);
+        logger.info("Processamento do arquivo {} finalizado.", file.getName());
     }
 
     private FileReportOutput getReportInformationFromFile(File file) {

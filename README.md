@@ -5,7 +5,7 @@ user-friendly summary in the output directory.
 
 ### Using the application
 
-1. Run with gradle, using `./gradlew run`
+1. Run with gradle, using `./gradlew bootRun`
 2. Enter a **.dat** file in the **~/data/in** directory.
 3. Access the **~/data/out** directory to check the results.
 
